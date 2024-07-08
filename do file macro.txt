@@ -1,0 +1,12 @@
+import excel using "C:\Users\el tulón\Contacts\Desktop\macro\pwt70.xlsx", firstrow *mete el archivo directo a STATA. pwt70.xlsx es una conversion. Arreglar.*
+
+> cd "C:\Users\el tulón\Contacts\Desktop\Macro"
+>use barrolee
+> keep if year==2005
+>save "barrolee2005"
+>clear all
+>import delimited using "C:\Users\el tulón\Contacts\Desktop\Macro\pwt70_w.csv" *mete el archivo a stata*
+>compress *descomprime archivo .csv*
+>save "pwt70_w.dta"
+>merge m:1 country using barrolee2005 *unimos la informacion, en lustros, del barro lee a la base de datos.*
+> keep if year==1960 | year==2008 *borramos toda informacion que no sea de estos años. perdemos variables de barro lee*
